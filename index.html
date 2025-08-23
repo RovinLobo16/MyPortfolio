@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rovin Lobo • Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#070a13;
+      --fg:#e6e6e6;
+      --muted:#94a3b8;
+      --primary:#7c3aed;
+      --accent:#0ea5e9;
+      --card:#0b1020;
+      --glow:0 0 24px rgba(124,58,237,.55);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;
+      background:radial-gradient(1200px 600px at 10% -10%, rgba(124,58,237,.12), transparent 40%),
+                  radial-gradient(1000px 500px at 90% 10%, rgba(14,165,233,.12), transparent 40%),
+                  var(--bg);
+      color:var(--fg);
+      overflow-x:hidden;
+    }
+    .grid-overlay{
+      position:fixed; inset:0; pointer-events:none;
+      background-image: linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      -webkit-mask-image: radial-gradient(circle at 50% 20%, #000 40%, transparent 70%);
+      mask-image: radial-gradient(circle at 50% 20%, #000 40%, transparent 70%);
+    }
+    
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: rgba(7,10,19,.6);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .brand{font-family:Orbitron,Inter;font-weight:800; letter-spacing:.08em; color:#fff; text-decoration:none}
+    .brand span{color:var(--primary); text-shadow:var(--glow)}
+    .nav nav a{color:var(--muted); margin-left:16px; text-decoration:none}
+    .nav nav a:hover{color:#fff}
+    main{max-width:1100px; margin:0 auto; padding:32px 20px}
+    .hero{padding:80px 0 40px 0; text-align:center}
+    .hero.small{padding:100px 0}
+    .hero h1{font-size:clamp(2.2rem, 5vw, 4rem); margin:0 0 12px 0; font-family:Orbitron,Inter}
+    .glow{ text-shadow: 0 0 12px rgba(14,165,233,.35), 0 0 32px rgba(124,58,237,.35)}
+    .hero h1 span{color:var(--accent)}
+    .tagline{color:var(--muted); font-size:1.05rem}
+    .cta{margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+    .btn{padding:12px 18px; border-radius:999px; text-decoration:none; font-weight:600; border:1px solid rgba(255,255,255,.12)}
+    .btn.primary{background:linear-gradient(90deg, var(--primary), var(--accent)); border:none; color:white; box-shadow:var(--glow)}
+    .btn.ghost{color:#fff}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), transparent 40%), var(--card);
+          border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:24px; margin:28px 0}
+    .badges{display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none}
+    .badges li{padding:6px 10px; border-radius:999px; background:rgba(124,58,237,.12); border:1px solid rgba(124,58,237,.35); font-size:.9rem}
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0 12px 0;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: var(--card);
+      color: var(--fg);
+      font-family: Inter, system-ui, sans-serif;
+    }
+    button.btn.primary {
+      width: auto;
+      cursor: pointer;
+    }
+    @media (max-width:600px){ .nav nav a{margin-left:10px} }
+    
+    a, .btn, .card, .tile { transition: all 0.3s ease-in-out; }
+    .btn.primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 25px rgba(14,165,233,.55), 0 0 50px rgba(124,58,237,.35);}
+    .btn.ghost:hover { color: var(--accent); border-color: var(--accent); text-shadow: 0 0 8px rgba(14,165,233,.6);}
+    
+    #stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      display: block;
+    }
+
+    /* Animation for moving letters */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .glow span {
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .glow span:nth-child(1) { animation-delay: 0s; }
+    .glow span:nth-child(2) { animation-delay: 0.1s; }
+    .glow span:nth-child(3) { animation-delay: 0.2s; }
+    .glow span:nth-child(4) { animation-delay: 0.3s; }
+    .glow span:nth-child(5) { animation-delay: 0.4s; }
+    .glow span:nth-child(6) { animation-delay: 0.5s; }
+    .glow span:nth-child(7) { animation-delay: 0.6s; }
+    .glow span:nth-child(8) { animation-delay: 0.7s; }
+    .glow span:nth-child(9) { animation-delay: 0.8s; }
+  </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  <div class="grid-overlay"></div>
+  <header class="nav">
+    <a href="index.html" class="brand">ROVIN<span>•</span>LOBO</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="project.html">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 class="glow">Hi, I'm 
+        <span>R</span><span>o</span><span>v</span><span>i</span><span>n</span> 
+        <span>L</span><span>o</span><span>b</span><span>o</span>
+      </h1>
+      <p class="tagline">MCA @ Presidency University • AI • ML • Data Analytics • Full‑Stack</p>
+      <div class="cta">
+        <a class="btn primary" href="project.html">View Projects</a>
+        <a class="btn ghost" href="#contact">Contact Me</a>
+      </div>
+    </section>
+
+    <section class="about card">
+      <h2>About Me</h2>
+      <p>"I am a passionate software developer specializing in AI, machine learning, and full-stack web development. With a Master of Computer Applications (MCA) from Presidency University, I have cultivated expertise in Python, Flask, OpenCV, and cloud platforms like AWS. My projects range from real-time gesture control applications to intelligent chatbots and data-driven management systems. I thrive in collaborative environments and am always eager to learn and take on new challenges. Feel free to explore my work or reach out to discuss how we can innovate together."</p>
+      <ul class="badges">
+        <li>Python</li><li>Java</li><li>Flask</li><li>OpenCV</li><li>AWS</li><li>MySQL</li>
+      </ul>
+    </section>
+
+    <section class="skills card">
+      <h2>Skills</h2>
+      <ul class="badges">
+        <li>Python</li>
+        <li>Java</li>
+        <li>Flask</li>
+        <li>OpenCV</li>
+        <li>AWS</li>
+        <li>MySQL</li>
+        <li>React</li>
+        <li>MERN</li>
+        <li>HTML/CSS</li>
+        <li>Git</li>
+      </ul>
+    </section>
+
+    <section class="experience card">
+      <h2>Intership</h2>
+      <ul>
+        <li><strong>Innovent IT Solution on PHP/MYSQL</strong> - 2024 </li>
+        <li><strong>ACME GRAGE on Artificail Intelligence</strong> - 2025</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="contact card">
+      <h2>Contact Me</h2>
+      <form action="mailto:rovinlobo@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Rovin Lobo" required />
+        <input type="email" name="email" placeholder="youremail@gamil.com" required />
+        <textarea name="message" placeholder="Feel free to reach out! I usually respond within 24-48 hours." rows="4" required></textarea>
+        <button class="btn primary" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer style="margin-top:48px; padding:40px 20px; border-top:1px solid rgba(255,255,255,.06); text-align:center; color: var(--muted); font-size:0.9rem;">
+    <h3>Let’s build something futuristic.</h3>
+    <p>
+      <a href="mailto:rovinlobo@gmail.com" style="color: var(--accent); text-decoration:none;">rovinlobo@gmail.com</a> • 
+      <a href="https://linkedin.com/in/rovinlobo" style="color: var(--accent); text-decoration:none;">LinkedIn</a> • 
+      <a href="https://github.com/RovinLobo16" style="color: var(--accent); text-decoration:none;">GitHub</a>
+    </p>
+    <p>© 2025 Rovin Lobo</p>
+  </footer>
+
+  <script>
+    // Animated starfield
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let w, h, stars;
+
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars = Array.from({length: Math.min(200, Math.floor(w*h/8000))}, () => ({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        z: Math.random()*1 + .3,
+        r: Math.random()*1.2 + .2
+      }));
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      for(const s of stars){
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(180, 200, 255, ${0.35 + s.z*0.5})`;
+        ctx.fill();
+        s.x += (Math.random()-.5)*s.z;
+        s.y += (Math.random()-.5)*s.z;
+        if(s.x<0||s.x>w||s.y<0||s.y>h){ s.x=Math.random()*w; s.y=Math.random()*h; }
+      }
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    resize(); 
+    draw();
+
+    // Reveal animations on load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card,.tile,.btn').forEach((el,i) => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(12px)';
+        setTimeout(() => {
+          el.style.transition = '600ms ease';
+          el.style.opacity = 1;
+          el.style.transform = 'translateY(0)';
+        }, 200 + i*80);
+      });
+    });
+  </script>
+</body>
+</html>
